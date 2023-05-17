@@ -529,14 +529,117 @@ footer {
 /* tests mise en page 
 
 */
-@media screen and (max-width: 760px){
+@media screen and (max-width: 768px){
+  body {
+    padding: 0 30px;
+  }
 
-}
-/* amélioration de la page mobile comme sur la maquette */
-@media screen and (max-width: 550px) {
   .topnav {
     margin: 0;
+    min-height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
+
+  .topnav img {
+    height: 30px;
+  }
+
+  .topnav a {
+    display: none;
+  }
+  .topnav a.icon {
+    float: right;
+    display: block;
+    color: #ff0000;
+    background-color: #fff;
+  }
+
+  .topnav.responsive {
+    position: relative;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .topnav.responsive .header-logo {
+    display: block;
+    float: none;
+    margin: 27px 0;
+  }
+
+  .topnav.responsive .main-navbar {
+    display: block;
+    float: none;
+    width: 100%;
+  }
+
+  .topnav.responsive .icon {
+    position: absolute;
+    right: 0;
+    top: 27px;
+    margin: 0;
+    color: white;
+    background-color: #ff0000;
+    border-radius: 15px;
+  }
+  .topnav.responsive a {
+    float: none;
+    display: block;
+  }
+
+  main {
+    padding: 0;
+  }
+
+  .hero-section {
+    display: block;
+    box-shadow: unset;
+    max-height: none;
+  }
+  .hero-content {
+    background: #fff;
+    color: #000;
+    padding: 20px 0;
+  }
+  .hero-content::after {
+    content: unset;
+  }
+  .hero-content .btn-signup {
+    display: none;
+  }
+  .hero-headline {
+    font-size: 4.5rem;
+    white-space: normal;
+    font-weight: 500;
+  }
+  .hero-text {
+    width: unset;
+    font-size: 1.5rem;
+  }
+  .hero-img img {
+    border-radius: 10px;
+    margin-top: 40px;
+    height: 100%;
+  }
+  .hero-section > .btn-signup {
+    display: block;
+    margin: 32px auto 10px;
+    padding: 12px 35px;
+  }
+
+  .bground {
+    overflow: auto;
+  }
+
+  .copyrights {
+    margin-top: 50px;
+    text-align: center;
+  }
+}
+
+/* amélioration de la page mobile comme sur la maquette */
+@media screen and (max-width: 540px) {
 
   .topnav a.icon {
     display: block;
@@ -591,3 +694,26 @@ footer {
     font-size: 10px;
   }
 }
+
+.validBox{
+  width :400px;
+  height :600px;
+  position :absolute;
+  top : 50%;
+  left : 50%;
+  transform :translate(-50%, -50%);
+  z-index: 100;
+  display :block;
+  }
+  
+  .validMessage{
+      height: 80%;
+      width : 80%;
+      display :flex;
+      flex-direction : column;
+      align-items :center;
+      justify-content: center;
+     font-size: 36px;
+      color :white;
+      text-align : center;
+  }
