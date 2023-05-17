@@ -43,8 +43,9 @@ function launchModal() {
 submitModal.addEventListener('submit', function(e) {
   e.preventDefault();
 
-  // Vérification du prénom
-  if (firstName.value.length < 2) {
+  // Vérification du prénom +regex 
+  if (firstName.value.length < 2 ||
+    !firstName.value.match(/^[A-Za-z-éèêàâäiîçô\s]{2,}$/)) {
     formData[0].dataset.error = 'Veuillez entrer 2 caractères ou plus pour le champ du prénom.';
     formData[0].dataset.errorVisible = 'true';
   } else {
@@ -52,8 +53,8 @@ submitModal.addEventListener('submit', function(e) {
     formData[0].removeAttribute('data-error-visible');
   }
 
-  // Vérification du nom de famille
-  if (lastName.value.length < 2) {
+  // Vérification du nom de famille + regex 
+  if (lastName.value.length < 2 || !lastName.value.match(/^[A-Za-z-éèêàâäiîçô\s]{2,}$/)) {
     formData[1].dataset.error = 'Veuillez entrer 2 caractères ou plus pour le champ du nom.';
     formData[1].dataset.errorVisible = 'true';
   } else {
@@ -76,8 +77,8 @@ submitModal.addEventListener('submit', function(e) {
   const birth = new Date(birthDate.value);
   const today = new Date();
 
-  if  ((isNaN(Date.parse(birthDate.value))) || (birth > today)) {
-    formData[3].dataset.error = 'Veuillez entrer une date valide au format aaaa-mm-jj';
+  if  ((isNaN(Date.parse(birthDate.value))) || (birth > today) ) {
+    formData[3].dataset.error = 'Veuillez entrer une date valide au format jj-mm-aaaa';
     formData[3].dataset.errorVisible = 'true';
   } else {
     formData[3].removeAttribute('data-error');
@@ -132,20 +133,10 @@ submitModal.addEventListener('submit', function(e) {
   if (!(hasError === 1)) {
     closeModal();
 
-    // Validation Box
+    // Validation du formulaire si tout est ok
     const div = document.createElement('div');
     document.querySelector('body').appendChild(div);
     document.querySelector('body > div:last-child').classList.add('content', 'validBox');
-    document.querySelector('.validBox').style.width = '400px';
-    document.querySelector('.validBox').style.height = '600px';
-    document.querySelector('.validBox').style.position = 'absolute';
-    document.querySelector('.validBox').style.top = '50%';
-    document.querySelector('.validBox').style.left = '50%';
-    document.querySelector('.validBox').style.transform = 'translate(-50%, -50%)';
-    document.querySelector('.validBox').style.zIndex = '100';
-    document.querySelector('.validBox').style.display = 'block';
-    document.querySelector('.validBox').style.boxShadow = '0 5px 10px rgba(0, 0, 0, 0.5)';
-
     // Validation Box Span Close
     document.querySelector('.validBox').appendChild(document.createElement('span'));
     document.querySelector('.validBox > span').classList.add('close');
@@ -158,16 +149,8 @@ submitModal.addEventListener('submit', function(e) {
     document.querySelector('.validBox > div').classList.add('modal-body', 'validMessage');
     let newSpan = document.createElement('span');
     document.querySelector('.validMessage').appendChild(newSpan);
-    document.querySelector('.validMessage').style.height = '80%';
-    document.querySelector('.validMessage').style.width = '80%';
-    document.querySelector('.validMessage').style.display = 'flex';
-    document.querySelector('.validMessage').style.flexDirection = 'column';
-    document.querySelector('.validMessage').style.alignItems = 'center';
-    document.querySelector('.validMessage').style.justifyContent = 'center';
     document.querySelector('.validMessage > span').innerHTML = "Merci pour votre inscription.";
-    document.querySelector('.validMessage > span').style.fontSize = '36px';
-    document.querySelector('.validMessage > span').style.color = 'white';
-    document.querySelector('.validMessage > span').style.textAlign = 'center';
+   
 
 
     //  CLOSE BUTTON
