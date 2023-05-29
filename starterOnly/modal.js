@@ -65,19 +65,19 @@ submitModal.addEventListener('submit', function(e) {
   // Vérification de l'adresse mail avec regex
   mailFormat = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,63})$/;
 
-  if (!mailFormat.test(mailAdress.value)) {
-    formData[2].dataset.error = 'Veuillez entrer une adresse email valide!';
+  if (!mailFormat.test(mailAdress.value || mailAdress.value == ' ' || mailAdress.value == null)) {
+    formData[2].dataset.error = 'Veuillez entrer une adresse email valide et conforme!';
     formData[2].dataset.errorVisible = 'true';
   } else {
     formData[2].removeAttribute('data-error');
     formData[2].removeAttribute('data-error-visible');
   }
 
-  // Vérification de la date de naissance
+  // Vérification de la date de naissance + ajout condition d'age 
   const birth = new Date(birthDate.value);
   const today = new Date();
 
-  if  ((isNaN(Date.parse(birthDate.value))) || (birth > today) ) {
+  if  ((isNaN(Date.parse(birthDate.value))|| birth.getFullYear() > today.getFullYear()-18) ) {
     formData[3].dataset.error = 'Veuillez entrer une date valide au format jj-mm-aaaa';
     formData[3].dataset.errorVisible = 'true';
   } else {
